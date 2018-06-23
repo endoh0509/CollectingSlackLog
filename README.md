@@ -3,11 +3,12 @@
 # Installation
 
 1. 仮想環境の準備 `python3 -m venv CollectingSlackLog`
-2. 仮想環境を使う `source CollectingSlackLog/bin/activate`
+2. 仮想環境に入る `source CollectingSlackLog/bin/activate`
 3. パッケージをインストール `pip install -r requirements.txt`
 4. `.env.yml` を配置
 5. `.env.yml` にSlack API トークンを設定
 6. 実行 `python main.py`
+7. 仮想環境を抜ける`deactivate`
 
 ## .env.ymlの例
 
