@@ -1,4 +1,5 @@
 /venv
+/CollectingSlackLog
 /.env.yml
 /log/**/*.json
 
