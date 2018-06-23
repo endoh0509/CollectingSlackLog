@@ -1,6 +1,6 @@
 /venv
 /.env.yml
-/data/**/*.json
+/log/**/*.json
 
 .idea
 .DS_Store

@@ -1,10 +1,12 @@
 from slackclient import SlackClient
+import os
+import datetime
 import yaml
 import json
 
 slack_token = ''
-DATA_PATH = 'data'
-
+DATA_PATH = 'log/%s' % datetime.datetime.today().strftime("%Y%m%d%H%M%S")
+os.mkdir(DATA_PATH)
 
 try:
     with open('.env.yml') as file:
@@ -25,14 +27,27 @@ def save_json(name, json_dict):
     json.dump(json_dict, f, indent=4, ensure_ascii=False)
 
 
+def merge_dict(dicts):
+    return {k: v for dic in dicts for k, v in dic.items()}
+
+
 save_json('%s/channels.json' % DATA_PATH, channels)
 save_json('%s/members.json' % DATA_PATH, members)
 
+os.mkdir('%s/history' % DATA_PATH)
 for channel in channels['channels']:
     history = sc.api_call('channels.history', channel=channel['id'])
-    save_json('%s/history/%s.json' % (DATA_PATH, channel['id']), history)
+    fileName = '%s/history/%s.json' % (DATA_PATH, channel['id'])
+    save_json(fileName, history)
 
 
+# Merge test
+# logFile = open(fileName, 'r')
+# logData = json.load(logFile)
+# merge_dict([history, logData])
+
+
+# Serialize test
 # def find(iterable, default=None, pred=None):
 #     return next(filter(pred, iterable), default)
 #
